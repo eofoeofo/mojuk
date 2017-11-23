@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.MojukMapper">
+
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+
+	<insert id="insertMojuk">
+		insert into tbl_1in (cnum , video1_in , guide1_in ,
+		tukgang1_in , jindan1_in) values
+		(#{cnum}, #{video1_in}, #{guide1_in},
+		#{tukgang1_in},
+		#{jindan1_in})
+	</insert>
+
+	<select id="read" resultType="com.inhatc.domain.MojukVO">
+		select
+		cnum, video1_in, guide1_in,
+		tukgang1_in,
+		jindan1_in
+		from
+		tbl_1in
+		where cnum = #{cnum}
+	</select>
+
+	<update id="update">
+		update tbl_1in set video1_in = #{video1_in},
+		guide1_in = #{guide1_in},
+		tukgang1_in = #{tukgang1_in},
+		jindan1_in = #{jindan1_in}
+		where
+		cnum= "202020"
+	</update>
+
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+
+	<select id="listAll" resultType="com.inhatc.domain.MojukVO">
+<![CDATA[
+select * from tbl_1in where cnum = #{cnum}
+]]>
+	</select>
+</mapper>
