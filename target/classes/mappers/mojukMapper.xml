@@ -19,11 +19,9 @@
 
 	<select id="read" resultType="com.inhatc.domain.MojukVO">
 		select
-		cnum, video1_in, guide1_in,
-		tukgang1_in,
-		jindan1_in
+		cnum, depart, username
 		from
-		tbl_1in
+		tbl_user
 		where cnum = #{cnum}
 	</select>
 
@@ -33,7 +31,23 @@
 		tukgang1_in = #{tukgang1_in},
 		jindan1_in = #{jindan1_in}
 		where
-		cnum= "202020"
+		cnum= #{cnum}
+		</update>
+	
+	<update id="update2">
+		update tbl_2in set pom2_in = #{pom2_in},
+		soc2_in = #{soc2_in},
+		wow2_in = #{wow2_in}
+		where
+		cnum= #{cnum}
+	</update>
+	
+	<update id="update3">
+		update tbl_3in set toc3_in = #{toc3_in},
+		fly3_in = #{fly3_in},
+		flyup3_in = #{flyup3_in}
+		where
+		cnum= #{cnum}
 	</update>
 
 	<delete id="delete">
@@ -42,7 +56,34 @@
 
 	<select id="listAll" resultType="com.inhatc.domain.MojukVO">
 <![CDATA[
-select * from tbl_1in where cnum = #{cnum}
+		select
+		tbl_1in.cnum, 
+		tbl_1in.video1_in, 
+		tbl_1in.guide1_in,
+		tbl_1in.tukgang1_in,
+		tbl_1in.jindan1_in,
+		tbl_2in.pom2_in,
+		tbl_2in.soc2_in,
+		tbl_2in.wow2_in,
+		tbl_3in.toc3_in,
+		tbl_3in.fly3_in,
+		tbl_3in.flyup3_in
+		from tbl_1in
+		left outer join tbl_2in
+		on tbl_1in.cnum = tbl_2in.cnum
+		left outer join tbl_3in
+		on tbl_1in.cnum = tbl_3in.cnum
 ]]>
+	</select>
+	
+	<select id="listview" resultType="com.inhatc.domain.MojukVO">
+ <![CDATA[
+ select 
+   cnum,depart,username,comp,soci 
+ from 
+   tbl_user 
+ where cnum > 0 
+ order by cnum asc
+ ]]>
 	</select>
 </mapper>

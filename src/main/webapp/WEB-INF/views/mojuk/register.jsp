@@ -19,6 +19,7 @@
 	width: 200px;
 	height: 100px;
 	float: left;
+	vertical-align: text-middle;
 	border-top: solid 1px;
 	font-weight: bold;
 }
@@ -43,7 +44,13 @@
 	height: 100px;
 	float: left;
 	color: #FFFFFF;
+	transform: scale(1);
+	transition: all 0.3s ease-in-out; /* 부드러운 모션을 위해 추가함 */
 	background-color: #EE4949;
+}
+
+.cl_1:hover {
+	transform: scale(1.02);
 }
 
 .cl_2 {
@@ -53,8 +60,16 @@
 	height: 100px;
 	float: left;
 	vertical-align: text-middle;
+	transform: scale(1);
+	transition: all 0.3s ease-in-out;
+	/* 부드러운 모션을 위해 추가함 */
 	color: #FFFFFF;
 	background-color: #EE4949;
+	transition: all 0.3s ease-in-out;
+}
+
+.cl_2:hover {
+	transform: scale(1.02);
 }
 
 .cl_3 {
@@ -64,15 +79,20 @@
 	height: 100px;
 	float: left;
 	color: #FFFFFF;
+	transform: scale(1);
+	transition: all 0.3s ease-in-out;
+	/* 부드러운 모션을 위해 추가함 */
 	background-color: #EE4949;
+	transition: all 0.3s ease-in-out;
 }
 
-input[checked] {
-	
+.cl_3:hover {
+	transform: scale(1.02);
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="/resources/jQuery/jQuery-2.1.4.min.js"></script>
 </head>
 <body>
 	<%@include file="../include/header.jsp"%>
@@ -85,171 +105,172 @@ input[checked] {
 				<h1 class="text1_in" style="text-align: left;">1_in</h1>
 			</div>
 			<c:forEach items="${list1}" var="mojukVO" varStatus="status">
-				<div class="cl_1" id="1_in${status.index}">
-					<input type="checkbox" id="1_in${status.index}"
-						onchange="change${status.index}(${list1[status.index]})"
-						name="chkok${status.index}" value="true">영상
-				</div>
+				<label class="cl_1" id="1_in${status.index}"> <input
+					type="checkbox" id="1_inc${status.index}"
+					onClick="change(${status.index},${list1[status.index]})"
+					name="chkok${status.index}" class="ch"><span
+					id="spanname${status.index}"></span></label>
 				<script>
 					// 체크된 항목은 다시 풀 수 없게 만들어 줄 변수 선언
 					/* var check1_in${status.index} = ${list1[status.index]}; */
 					var temp${status.index} = ${list1[status.index]};
-					var chc${status.index} = document.getElementById("1_in${status.index}");
+					var chd${status.index} = document.getElementById("1_in${status.index}");
+					var chc${status.index} = document.getElementById("1_inc${status.index}");
 					
 					if (temp${status.index} == true) {
-						chc${status.index}.style.backgroundColor = "#159468";
+						chd${status.index}.style.backgroundColor = "#159468";
 					} else {
-						chc${status.index}.style.backgroundColor = "#EE4949";
+						chd${status.index}.style.backgroundColor = "#EE4949";
 					}
-					
+
 					if (temp${status.index} == true)  {
-						dod.chkok${status.index}.checked = true;
+						chc${status.index}.checked = true;
 					} else {
-						dod.chkok${status.index}.checked = false;
+						chc${status.index}.checked = false;
 					}
+				</script>
+			</c:forEach>
+			<br> <br> <br> <br> <br> <br>
+			<div>
+				<h1 class="text2_in" style="text-align: left;">2_in</h1>
+			</div>
+			<c:forEach items="${list2}" var="mojukVO" varStatus="status">
+				<label class="cl_2" id="2_in${status.index}"> <input
+					type="checkbox" id="2_inc${status.index}"
+					onClick="change(${status.index},${list2[status.index]})"
+					name="chkok2${status.index}" class="ch"><span
+					id="spanname2${status.index}"></span>
+				</label>
+				<script>
+					// 체크된 항목은 다시 풀 수 없게 만들어 줄 변수 선언
+					/* var check1_in${status.index} = ${list1[status.index]}; */
+					var temp2${status.index} = ${list2[status.index]};
+					var chd2${status.index} = document.getElementById("2_in${status.index}");
+					var chc2${status.index} = document.getElementById("2_inc${status.index}");
 					
-					console.log("here: "+temp${status.index});
-					
-					// db에서 받아온 값이 true일 경우 check가 되어있어야 한다
-					/* console.log(temp${status.index}); */
-					
-					function change${status.index}(temp) {
-					var chc${status.index} = document.getElementById("1_in${status.index}");
-					
-					
-					//체크된 항목은 다시 풀 수 없게 만들어 줄 input id를 get함.
-					/* var check1_in${status.index} = document.getElementById("check1_in${status.index}")
-					
-					
-					check1_in${status.index}.checked = true;
-					check1_in${status.index}.checked = false; */
-					
-					/* if (temp === true) {
-						chc${status.index}.style.backgroundColor = "#159468";
+					if (temp2${status.index} == true) {
+						chd2${status.index}.style.backgroundColor = "#159468";
 					} else {
-						chc${status.index}.style.backgroundColor = "#EE4949";
-					}  */
-				}
+						chd2${status.index}.style.backgroundColor = "#EE4949";
+					}
+
+					if (temp2${status.index} == true)  {
+						chc2${status.index}.checked = true;
+					} else {
+						chc2${status.index}.checked = false;
+					}
+				</script>
+			</c:forEach>
+			<br> <br> <br> <br> <br> <br>
+			<div>
+				<h1 class="text3_in" style="text-align: left;">3_in</h1>
+			</div>
+			<c:forEach items="${list3}" var="mojukVO" varStatus="status">
+				<label class="cl_3" id="3_in${status.index}"> <input
+					type="checkbox" id="3_inc${status.index}"
+					onClick="change(${status.index},${list3[status.index]})"
+					name="chkok3${status.index}" class="ch"><span
+					id="spanname3${status.index}"></span>
+				</label>
+				<script>
+					// 체크된 항목은 다시 풀 수 없게 만들어 줄 변수 선언
+					/* var check1_in${status.index} = ${list1[status.index]}; */
+					var temp3${status.index} = ${list3[status.index]};
+					var chd3${status.index} = document.getElementById("3_in${status.index}");
+					var chc3${status.index} = document.getElementById("3_inc${status.index}");
+					
+					if (temp3${status.index} == true) {
+						chd3${status.index}.style.backgroundColor = "#159468";
+					} else {
+						chd3${status.index}.style.backgroundColor = "#EE4949";
+					}
+
+					if (temp3${status.index} == true)  {
+						chc3${status.index}.checked = true;
+					} else {
+						chc3${status.index}.checked = false;
+					}
 				</script>
 			</c:forEach>
 			<!-- /.box - body -->
 			<div class="box-footer">
 				<br> <br> <br> <br> <br> <br>
 				<button type="submit" class="btn btn-primary">Submit</button>
-				<button type="submit" class="btn btn-warning">Modify</button>
 			</div>
 		</div>
 	</form>
-	<%@include file="../include/footer.jsp"%>
 	<script>
-		/* function change2() {
-			var chc3 = document.getElementById("guide1");
-			//var chc4 = document.getElementById("video2");
-			var chc4 = document.dod.guide2.checked;
+		window.onload = function(){
+			for(var num = 0; num<4; num++){
+				var name = document.getElementById('spanname'+num);
+				if(num == 0){
+					name.innerHTML = "영상으로 만나는 학습법 특강";
+				}else if(num == 1){
+					name.innerHTML = "학습법 가이드 책자";
+				}else if(num == 2){
+					name.innerHTML = "학습법 특강";
+				}else{
+					name.innerHTML = "학습유형진단";
+				}
+			}
 
-			console.log(chc4);
-			if (chc4) {
-				chc3.style.backgroundColor = "#159468";
-			} else {
-				chc3.style.backgroundColor = "#EE4949";
+			for(var num = 0; num<3; num++){
+				var name = document.getElementById('spanname2'+num);
+				if(num == 0){
+					name.innerHTML = "POM나는 경진대회";
+				}else if(num == 1){
+					name.innerHTML = "SOC들어오는 노트공모전";
+				}else{
+					name.innerHTML = "WOW캠프";
+				}
+			}
+			
+			for(var num = 0; num<3; num++){
+				var name = document.getElementById('spanname3'+num);
+				if(num == 0){
+					name.innerHTML = "TOC튀는 멘토링";
+				}else if(num == 1){
+					name.innerHTML = "FLY튜터링";
+				}else{
+					name.innerHTML = "FLY UP튜터링";
+				}
 			}
 		}
-		function change3() {
-			var chc5 = document.getElementById("tukgang1");
-			//var chc6 = document.getElementById("tukgang2");
-			var chc6 = document.dod.tukgang2.checked;
+		
+		function change(num,temp) {
+			var chkdiv = document.getElementById('1_in'+num);
+			var chkbox = document.getElementById('1_inc'+num);
+			var chkdiv2 = document.getElementById('2_in'+num);
+			var chkbox2 = document.getElementById('2_inc'+num);
+			var chkdiv3 = document.getElementById('3_in'+num);
+			var chkbox3 = document.getElementById('3_inc'+num);
 
-			console.log(chc6);
-			if (chc6) {
-				chc5.style.backgroundColor = "#159468";
-			} else {
-				chc5.style.backgroundColor = "#EE4949";
+			if(chkbox.checked == true){
+				chkdiv.style.backgroundColor = "#159468";
+				chkbox.checked = true;
+			}else{
+				chkdiv.style.backgroundColor = "#EE4949";
+				chkbox.checked = false;
+			}
+			
+			console.log(chkbox2.checked);
+			if(chkbox2.checked == true){
+				chkdiv2.style.backgroundColor = "#159468";
+				chkbox2.checked = true;
+			}else{
+				chkdiv2.style.backgroundColor = "#EE4949";
+				chkbox2.checked = false;
+			}
+			
+			if(chkbox3.checked == true){
+				chkdiv3.style.backgroundColor = "#159468";
+				chkbox3.checked = true;
+			}else{
+				chkdiv3.style.backgroundColor = "#EE4949";
+				chkbox3.checked = false;
 			}
 		}
-		function change4() {
-			var chc7 = document.getElementById("jindan1");
-			//var chc8 = document.getElementById("jindan2");
-			var chc8 = document.dod.jindan2.checked;
-
-			console.log(chc8);
-			if (chc8) {
-				chc7.style.backgroundColor = "#159468";
-			} else {
-				chc7.style.backgroundColor = "#EE4949";
-			}
-		}
-		function change5() {
-			var chc9 = document.getElementById("pom1");
-			//var chc8 = document.getElementById("pom2");
-			var chc10 = document.dod.pom2.checked;
-
-			console.log(chc10);
-			if (chc10) {
-				chc9.style.backgroundColor = "#159468";
-			} else {
-				chc9.style.backgroundColor = "#EE4949";
-			}
-		}
-		function change6() {
-			var chc11 = document.getElementById("soc1");
-			//var chc12 = document.getElementById("soc2");
-			var chc12 = document.dod.soc2.checked;
-
-			console.log(chc12);
-			if (chc12) {
-				chc11.style.backgroundColor = "#159468";
-			} else {
-				chc11.style.backgroundColor = "#EE4949";
-			}
-		}
-		function change7() {
-			var chc13 = document.getElementById("wow1");
-			//var chc14 = document.getElementById("wow2");
-			var chc14 = document.dod.wow2.checked;
-
-			console.log(chc14);
-			if (chc14) {
-				chc13.style.backgroundColor = "#159468";
-			} else {
-				chc13.style.backgroundColor = "#EE4949";
-			}
-		}
-		function change8() {
-			var chc15 = document.getElementById("toc1");
-			//var chc16 = document.getElementById("toc2");
-			var chc16 = document.dod.toc2.checked;
-
-			console.log(chc16);
-			if (chc16) {
-				chc15.style.backgroundColor = "#159468";
-			} else {
-				chc15.style.backgroundColor = "#EE4949";
-			}
-		}
-		function change9() {
-			var chc17 = document.getElementById("fly1");
-			//var chc18 = document.getElementById("fly2");
-			var chc18 = document.dod.fly2.checked;
-
-			console.log(chc18);
-			if (chc18) {
-				chc17.style.backgroundColor = "#159468";
-			} else {
-				chc17.style.backgroundColor = "#EE4949";
-			}
-		}
-		function change10() {
-			var chc19 = document.getElementById("flyup1");
-			//var chc20 = document.getElementById("flyup2");
-			var chc20 = document.dod.flyup2.checked;
-
-			console.log(chc20);
-			if (chc20) {
-				chc19.style.backgroundColor = "#159468";
-			} else {
-				chc19.style.backgroundColor = "#EE4949";
-			}
-		} */
+		
 		$(document).ready(function() {
 
 			var formObj = $("form[role='form']");
@@ -266,5 +287,6 @@ input[checked] {
 		
 		
 	</script>
+	<%@include file="../include/footer.jsp"%>
 </body>
 </html>
