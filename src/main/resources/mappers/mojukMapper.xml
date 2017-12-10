@@ -5,18 +5,17 @@
 
 <mapper namespace="com.inhatc.mapper.MojukMapper">
 
-	<select id="getTime" resultType="string">
-		select now()
+	<select id="listview" resultType="com.inhatc.domain.MojukVO">
+ <![CDATA[
+ select 
+   cnum,depart,username,comp,soci 
+ from 
+   tbl_user 
+ where cnum > 0 
+ order by cnum asc
+ ]]>
 	</select>
-
-	<insert id="insertMojuk">
-		insert into tbl_1in (cnum , video1_in , guide1_in ,
-		tukgang1_in , jindan1_in) values
-		(#{cnum}, #{video1_in}, #{guide1_in},
-		#{tukgang1_in},
-		#{jindan1_in})
-	</insert>
-
+	
 	<select id="read" resultType="com.inhatc.domain.MojukVO">
 		select
 		cnum, depart, username
@@ -50,14 +49,9 @@
 		cnum= #{cnum}
 	</update>
 
-	<delete id="delete">
-		delete from tbl_board where bno = #{bno}
-	</delete>
-
 	<select id="listAll" resultType="com.inhatc.domain.MojukVO">
 <![CDATA[
 		select
-		tbl_1in.cnum, 
 		tbl_1in.video1_in, 
 		tbl_1in.guide1_in,
 		tbl_1in.tukgang1_in,
@@ -73,17 +67,24 @@
 		on tbl_1in.cnum = tbl_2in.cnum
 		left outer join tbl_3in
 		on tbl_1in.cnum = tbl_3in.cnum
+		where tbl_1in.cnum= #{cnum}
+		
 ]]>
 	</select>
 	
-	<select id="listview" resultType="com.inhatc.domain.MojukVO">
- <![CDATA[
- select 
-   cnum,depart,username,comp,soci 
- from 
-   tbl_user 
- where cnum > 0 
- order by cnum asc
- ]]>
+	<!-- <delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete> -->
+	
+	<!-- <select id="getTime" resultType="string">
+		select now()
 	</select>
+
+	<insert id="insertMojuk">
+		insert into tbl_1in (cnum , video1_in , guide1_in ,
+		tukgang1_in , jindan1_in) values
+		(#{cnum}, #{video1_in}, #{guide1_in},
+		#{tukgang1_in},
+		#{jindan1_in})
+	</insert> -->
 </mapper>

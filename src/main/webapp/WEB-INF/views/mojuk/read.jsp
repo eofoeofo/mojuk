@@ -102,8 +102,6 @@
 				<!-- /.box-header -->
 
 				<form role="form" method="post" name="dod">
-
-					<input type='hidden' name='cnum' value="${mojukVO.cnum}">
 					<div class="box-body">
 						<div class="form-group">
 							<label for="exampleInputEmail1">이름</label> <input type="text"
@@ -111,8 +109,8 @@
 								readonly="readonly">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">학번</label> <input type="text"
-								name="cnum" class="form-control" value="${mojukVO.cnum}"
+							<label for="exampleInputPassword1">학번</label>
+							<input type="text" class="form-control" value="${mojukVO.cnum}"
 								readonly="readonly">
 						</div>
 						<div class="form-group">

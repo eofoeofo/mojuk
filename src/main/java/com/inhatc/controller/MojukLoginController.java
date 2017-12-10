@@ -1,24 +1,17 @@
 package com.inhatc.controller;
 
-import java.awt.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.inhatc.domain.MojukVO;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.inhatc.service.MojukService;
 
 @Controller
@@ -31,7 +24,7 @@ public class MojukLoginController {
 	@Inject
 	private MojukService service;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public int login(String cnum, HttpSession session) {
 		HashMap<String, String> hstParam = new HashMap<String, String>();
 
@@ -46,7 +39,7 @@ public class MojukLoginController {
 		}
 
 		return loginIdentify;
-	}
+	}*/
 	
 	@RequestMapping(value = "/loginpage.do")
 
@@ -81,8 +74,7 @@ public class MojukLoginController {
 		return "/login/loginpage";
 	}
 	
-	@RequestMapping(value = "/members.do")
-
+	/*@RequestMapping(value = "/members.do")
 	public ModelAndView members(MojukVO vo, HttpSession session) throws Exception{
 		
 
@@ -94,6 +86,5 @@ public class MojukLoginController {
 		System.out.println("insertΩ√¿€«‘");
 
 		return mav;
-	}
-	
+	}*/
 }

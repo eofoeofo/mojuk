@@ -1,6 +1,7 @@
 package com.inhatc.controller;
 
 import java.awt.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -27,26 +28,38 @@ public class MojukController {
 	@Inject
 	private MojukService service;
 
+	@RequestMapping(value = "/listview", method = RequestMethod.GET)
+	public void listview(MojukVO vo, Model model) throws Exception {
+
+		logger.info("show all list.............");
+		model.addAttribute("listv", service.listview());
+
+	}
+
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(MojukVO vo, Model model) throws Exception {
 
-		model.addAttribute(service.read(vo));
-		System.out.println(vo.getCnum());
+		ArrayList<MojukVO> Lvo = (ArrayList)service.read(vo);
+		model.addAttribute(Lvo.get(0));
+		System.out.println(Lvo.get(0).getCnum());
+		System.out.println(Lvo.get(0).getUsername());
+		System.out.println(Lvo.get(0).getDepart());
 		
-		 model.addAttribute("list1", service.listAll()); 
-		 model.addAttribute("list2", service.listAll2());
-		 model.addAttribute("list3", service.listAll3());
+		 model.addAttribute("list1", service.listAll(vo)); 
+		 model.addAttribute("list2", service.listAll2(vo));
+		 model.addAttribute("list3", service.listAll3(vo));
 		 
 	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.POST)
-	public String readPOST(MojukVO vo, Model model, RedirectAttributes rttr, HttpServletRequest request, String cnum)
+	public String readPOST(MojukVO vo, Model model, RedirectAttributes rttr, HttpServletRequest request)
 			throws Exception {
 
-		logger.info("register post ........");
+		System.out.println("register post ........");
 
-		vo.setCnum(cnum);
-		System.out.println(cnum);
+		//vo.setCnum(cnum);
+		System.out.println("getcnum : "+vo.getCnum());
+		
 		boolean temp[] = new boolean[4];
 		for (int i = 0; i < 4; i++) {
 			if (request.getParameter("chkok" + i) == null) {
@@ -70,9 +83,9 @@ public class MojukController {
 			}
 			System.out.println("chkok2_" + i + ": " + temp2[i]);
 		}
-		vo.setPom2_in(temp[0]);
-		vo.setSoc2_in(temp[1]);
-		vo.setWow2_in(temp[2]);
+		vo.setPom2_in(temp2[0]);
+		vo.setSoc2_in(temp2[1]);
+		vo.setWow2_in(temp2[2]);
 
 		boolean temp3[] = new boolean[3];
 		for (int i = 0; i < 3; i++) {
@@ -83,10 +96,10 @@ public class MojukController {
 			}
 			System.out.println("chkok3_" + i + ": " + temp3[i]);
 		}
-		vo.setToc3_in(temp[0]);
-		vo.setFly3_in(temp[1]);
-		vo.setFlyup3_in(temp[2]);
-		service.read(vo);
+		vo.setToc3_in(temp3[0]);
+		vo.setFly3_in(temp3[1]);
+		vo.setFlyup3_in(temp3[2]);
+		//service.read(vo);
 
 		service.regist(vo);
 		service.regist2(vo);
@@ -106,15 +119,7 @@ public class MojukController {
 		// return "/mojuk/success";
 		return "redirect:/mojuk/listview";
 	}
-
-	@RequestMapping(value = "/listview", method = RequestMethod.GET)
-	public void listview(MojukVO vo, Model model) throws Exception {
-
-		logger.info("show all list.............");
-		model.addAttribute("listv", service.listview());
-
-	}
-
+	
 	/*
 	 * @RequestMapping(value = "/register", method = RequestMethod.GET) public void
 	 * registGET(MojukVO mojuk, Model model) throws Exception {

@@ -17,7 +17,7 @@ public class MojukDAOTest {
 	@Inject
 	private MojukDAO dao;
 	
-	@Test
+	/*@Test
 	public void testInsertMojuk() throws Exception {
 		MojukVO vo = new MojukVO();
 		vo.setCnum("1");
@@ -33,6 +33,6 @@ public class MojukDAOTest {
 	public void testSelectMojuk() throws Exception {
 		
 		dao.readMojuk("cnum");
-	}
+	}*/
 
 }

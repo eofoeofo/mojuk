@@ -122,8 +122,6 @@
 							</tr>
 						</c:forEach>
 						<form role="form" method="post" name="dod">
-		<input type='hidden' name="cnum" value="${mojukVO.cnum}">
-		
 	</form>
 						
 					</table>
